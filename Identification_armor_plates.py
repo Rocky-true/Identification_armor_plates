@@ -73,17 +73,6 @@ def find_contours(bin_bright_img):
     contours, _ = cv2.findContours(bin_bright_img.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     return contours
 
-
-def adjust_rec(rec):
-    center, size, angle = rec
-    if angle < -45:
-        angle += 90
-        size = (size[1], size[0])  # 交换宽高
-    elif angle > 45:
-        angle -= 90
-        size = (size[1], size[0])  # 交换宽高
-    return (center, size, angle)
-
 # 灯柱筛选
 def filter_contours(contours, params):
     light_infos = []
